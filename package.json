@@ -1,0 +1,27 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "social network api using mongoose ODM",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node utils/seed.js",
+    "heroku-postbuild": "node utils/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rune-encoder/Social-Network-API.git"
+  },
+  "author": "Christian Palacios",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rune-encoder/Social-Network-API/issues"
+  },
+  "homepage": "https://github.com/rune-encoder/Social-Network-API#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.6.0"
+  }
+}
