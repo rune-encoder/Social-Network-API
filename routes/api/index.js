@@ -2,13 +2,13 @@
 const router = require("express").Router();
 
 // Import the user and thought routes.
-const userRoutes = require("./users");
-const thoughtRoutes = require("./thoughts");
+const userRoutes = require("./userRoutes");
+const thoughtRoutes = require("./thoughtRoutes");
 
-// Middleware: Send every request with the /users endpoint to the user routes.
+// Middleware: Send every request with the /api/users endpoint to the user routes.
 router.use("/users", userRoutes);
 
-// Middleware: Send every request with the /thoughts endpoint to the thought routes.
+// Middleware: Send every request with the /api/thoughts endpoint to the thought routes.
 router.use("/thoughts", thoughtRoutes);
 
 // Export the router instance.
