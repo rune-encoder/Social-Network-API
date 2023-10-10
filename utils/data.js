@@ -1,3 +1,5 @@
+const { get } = require("../models/Reaction");
+
 const wordSetOne = [
   "Bacon",
   "Biscuit",
@@ -14,7 +16,7 @@ const wordSetOne = [
   "Nuggets",
 ];
 
-const wordSetsTwo = [
+const wordSetTwo = [
   "Axe",
   "Battle",
   "Berserk",
@@ -42,6 +44,38 @@ const emailSet = [
   "@protonmail.com",
 ];
 
+const thoughtSetOne = [
+  "The unexamined life is not worth living.",
+  "Whereof one cannot speak, thereof one must be silent.",
+  "Entities should not be multiplied unnecessarily.",
+  "Do not allow yourselves to be deceived: Great Minds are Skeptical.",
+  "He who thinks great thoughts, often makes great errors.",
+  "Life must be understood backward. But it must be lived forward.",
+  "I can control my passions and emotions if I can understand their nature.",
+  "Happiness is not an ideal of reason, but of imagination.",
+  "I don't know why we are here, but I'm pretty sure it is not in order to enjoy ourselves.",
+  "He who is unable to live in society, or who has no need because he is sufficient for himself, must be either a beast or a god.",
+  "You can discover more about a person in an hour of play than in a year of conversation.",
+  "The only thing I know is that I know nothing.",
+  "To find yourself, think for yourself.",
+];
+
+const thoughtSetTwo = [
+  "So, where's the Cannes Film Festival being held this year?",
+  "I invented the internet.",
+  "I know how hard it is for you to put food on your family.",
+  "Rarely is the question asked: Is our children learning?",
+  "They misunderestimated me.",
+  "I know the human being and fish can coexist peacefully.",
+  "I know how hard it is for you to put food on your family.",
+  "Just remember it's the birds that's supposed to suffer, not the hunter.",
+  "I think we agree, the past is over.",
+  "Can we all get along?",
+  "I'm not a real movie star. I've still got the same wife I started out with twenty-eight years ago.",
+  "I'm the president of the United States and I'm not going to eat any more broccoli!",
+  "I'm not the smartest fellow in the world, but I can sure pick smart colleagues.",
+];
+
 const getRandomUsername = () => {
   // Randomly select a word from each wordSet
   const randomWord = (wordSet) => {
@@ -51,7 +85,7 @@ const getRandomUsername = () => {
 
   // Generate a username using the random words and a random numbers.
   const randomSetOne = randomWord(wordSetOne);
-  const randomSetTwo = randomWord(wordSetsTwo);
+  const randomSetTwo = randomWord(wordSetTwo);
 
   // Generate a random number between 10 and 99 after the username.
   const username =
@@ -71,7 +105,7 @@ const getRandomEmail = (username) => {
   return email;
 };
 
-const  getRandomFriends = (users, currentUser, friendCount) => {
+const getRandomFriends = (users, currentUser, friendCount) => {
   const randomFriends = [];
   const shuffledUsers = [...users]; // Clone the users array
 
@@ -90,6 +124,18 @@ const  getRandomFriends = (users, currentUser, friendCount) => {
   }
 
   return randomFriends;
-}
+};
 
-module.exports = { getRandomUsername, getRandomEmail, getRandomFriends };
+const getRandomThoughts = () => {
+  // Get a random set of thoughts
+
+  const randomThought =
+    thoughtSetOne[Math.floor(Math.random() * thoughtSetOne.length)] +
+    " " +
+    thoughtSetTwo[Math.floor(Math.random() * thoughtSetTwo.length)];
+
+  return randomThought;
+};
+
+console.log(getRandomThoughts());
+module.exports = { getRandomUsername, getRandomEmail, getRandomFriends, getRandomThoughts };
