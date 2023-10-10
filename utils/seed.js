@@ -12,7 +12,7 @@ const seedDatabase = async () => {
 
     // Confirm that the connection was successful.
     console.log(connection.readyState);
-    console.log("Database connection successful.");
+    console.log(`\nDatabase connection open.\n Status: ${connection.readyState}`);
 
     // Delete existing collections if they exist.
     let userCheck = await connection.db
@@ -20,7 +20,7 @@ const seedDatabase = async () => {
       .toArray();
     if (userCheck.length) {
       await connection.dropCollection("users");
-      console.log("Dropped users collection");
+      console.log("\nDropped users collection");
     }
 
     let thoughtCheck = await connection.db
@@ -28,14 +28,18 @@ const seedDatabase = async () => {
       .toArray();
     if (thoughtCheck.length) {
       await connection.dropCollection("thoughts");
-      console.log("Dropped thoughts collection");
+      console.log("\nDropped thoughts collection");
     }
 
     // Todo Perform your seeding operations here
     await User.collection.insertMany(usernamesAndEmails);
 
 
-    
+    console.table(usernamesAndEmails);
+    console.log("\nSeeding completed!")
+
+
+
   } catch (error) {
     console.error("Error connecting to the database:", error);
   } finally {
@@ -43,8 +47,7 @@ const seedDatabase = async () => {
     connection.close();
 
     // Confirm that the connection is closed
-    console.log(connection.readyState);
-    console.log("Database connection closed.");
+    console.log(`\nDatabase connection closed!\n Status: ${connection.readyState}`);
   }
 };
 
