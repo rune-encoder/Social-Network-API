@@ -1,59 +1,52 @@
 const connection = require("../config/connection.js");
 
 const { User, Thought } = require("../models");
+const usernamesAndEmails = require("./data.js");
 
 const seedDatabase = async () => {
   try {
-    // Attempt to connect to the database
-    await connection;
+    // Connect to the MongoDB database using the Mongoose connection object.
+    await new Promise((resolve) => {
+      connection.once("open", resolve);
+    });
 
-    console.log('Database connection successful.');
+    // Confirm that the connection was successful.
+    console.log(connection.readyState);
+    console.log("Database connection successful.");
+
+    // Delete existing collections if they exist.
+    let userCheck = await connection.db
+      .listCollections({ name: "users" })
+      .toArray();
+    if (userCheck.length) {
+      await connection.dropCollection("users");
+      console.log("Dropped users collection");
+    }
+
+    let thoughtCheck = await connection.db
+      .listCollections({ name: "thoughts" })
+      .toArray();
+    if (thoughtCheck.length) {
+      await connection.dropCollection("thoughts");
+      console.log("Dropped thoughts collection");
+    }
 
     // Todo Perform your seeding operations here
+    await User.collection.insertMany(usernamesAndEmails);
 
+
+    
   } catch (error) {
-    console.error('Error connecting to the database:', error);
+    console.error("Error connecting to the database:", error);
   } finally {
     // Close the database connection
-    console.log('Database connection closed.');
     connection.close();
+
+    // Confirm that the connection is closed
+    console.log(connection.readyState);
+    console.log("Database connection closed.");
   }
 };
 
 seedDatabase();
 
-    // // Delete existing collections if they exist
-    // await Student.collection.drop();
-    // await Course.collection.drop();
-
-    // // Create empty array to hold the students
-    // const students = [];
-
-    // // Loop 20 times to add students to the students array
-    // for (let i = 0; i < 20; i++) {
-    //   const assignments = getRandomAssignments(20);
-    //   const fullName = getRandomName();
-    //   const [first, last] = fullName.split(' ');
-    //   const github = `${first}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}`;
-
-    //   students.push({
-    //     first,
-    //     last,
-    //     github,
-    //     assignments,
-    //   });
-    // }
-
-    // // Add students to the collection
-    // await Student.insertMany(students);
-
-    // // Add courses to the collection
-    // await Course.create({
-    //   courseName: 'UCLA',
-    //   inPerson: false,
-    //   students,
-    // });
-
-    // // Log out the seed data to indicate what should appear in the database
-    // console.table(students);
-    // console.info('Seeding complete! 🌱');
