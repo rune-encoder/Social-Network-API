@@ -17,7 +17,11 @@ const seedDatabase = async () => {
 
     // Log that the connection was successful.
     console.log(
-      `\n================ Database connection open. ================\n Status: ${connection.readyState}`
+      `\n===========================================================`
+    );
+    console.log(`DATABASE CONNECTION OPEN\n STATUS: ${connection.readyState}`);
+    console.log(
+      `===========================================================\n`
     );
 
     // Delete existing collections if they exist.
@@ -27,7 +31,11 @@ const seedDatabase = async () => {
     if (userCheck.length) {
       await connection.dropCollection("users");
       console.log(
-        "\n================ Dropped USER collection ================"
+        `\n===========================================================`
+      );
+      console.log(`DROPPED COLLECTION: "USERS"`);
+      console.log(
+        `===========================================================\n`
       );
     }
 
@@ -37,7 +45,11 @@ const seedDatabase = async () => {
     if (thoughtCheck.length) {
       await connection.dropCollection("thoughts");
       console.log(
-        "\n================ Dropped THOUGHT collection ================\n"
+        `\n===========================================================`
+      );
+      console.log(`DROP COLLECTION: "THOUGHTS"`);
+      console.log(
+        `===========================================================\n`
       );
     }
 
@@ -58,7 +70,13 @@ const seedDatabase = async () => {
 
     // Insert the users into the User collection.
     await User.collection.insertMany(users);
-
+    console.log(
+      `\n===========================================================`
+    );
+    console.log(`CREATED "USER" COLLECTION: SEEDED "${users.length}" USERS!`);
+    console.log(
+      `===========================================================\n`
+    );
     // Populate the friends array for each user.
     for (const user of users) {
       // Generate a random number of friends between 1 and 3
@@ -77,18 +95,17 @@ const seedDatabase = async () => {
       );
     }
 
+    console.log(
+      `\n===========================================================`
+    );
+    console.log(`UPDATED "USER" COLLECTION: ADDED FRIENDS TO EACH USER`);
+    console.log(
+      `===========================================================\n`
+    );
+
     // Serialize the array of users data.
     const findUsers = await User.find({});
     const seededUsers = findUsers.map((user) => user.toObject());
-
-    console.log(
-      `\n================ Seeded ${seededUsers.length} Users to the User Collection! ================`
-    );
-    console.log(
-      `================ Seeded the User's Friends to the User collection ================\n`
-    );
-
-    // Todo Perform your seeding operations here ==========================
 
     // Seed the Thought collection with random thoughts.
     const thoughts = [];
@@ -108,22 +125,29 @@ const seedDatabase = async () => {
     // Insert the thoughts into the Thought collection.
     await Thought.collection.insertMany(thoughts);
 
+    // Serialize the array of thoughts data.
     const findThoughts = await Thought.find({});
     const seededThoughts = findThoughts.map((thought) => thought.toObject());
-    console.log(seededThoughts);
 
+    // TODO =====================================================
+    // console.log(seededThoughts);
 
-    // console.log(thoughts);
-    // console.log(
-    //   `\n================ Seeded ${thoughts.length} Thoughts to the Thought Collection! ================\n`
-    // );
+    console.log(
+      `\n===========================================================`
+    );
+    console.log(
+      `CREATED "THOUGHT" COLLECTION: SEEDED "${thoughts.length}" "THOUGHTS"!`
+    );
+    console.log(
+      `===========================================================\n`
+    );
 
     for (const thought of seededThoughts) {
       const username = thought.username;
-    
+
       // Find the user by username
       const user = await User.findOne({ username });
-    
+
       if (user) {
         // Update the user's thoughts array with the thought ID
         await User.findByIdAndUpdate(
@@ -136,13 +160,31 @@ const seedDatabase = async () => {
       }
     }
 
+    // TODO =====================================================
     const updatedUsers2 = await User.find({});
     const seededUsers2 = updatedUsers2.map((user) => user.toObject());
+    // console.log(seededUsers2);
+
+    console.log(
+      `\n===========================================================`
+    );
+    console.log(`UPDATED "USER" COLLECTION: ADDED THOUGHT ID'S TO EACH USER!`);
+    console.log(
+      `===========================================================\n`
+    );
+
+    console.log(
+      `\n===========================================================`
+    );
+    console.log("SEEDING COMPLETE!");
+    console.log(
+      `===========================================================\n`
+    );
+
+    // TODO =====================================================
+    console.log(seededThoughts);
     console.log(seededUsers2);
-
-    // Todo Perform your seeding operations here ==========================
-
-    console.log("\n================ Seeding completed! ================");
+    
   } catch (error) {
     console.error("Error connecting to the database:", error);
   } finally {
@@ -150,7 +192,13 @@ const seedDatabase = async () => {
     connection.close();
     // Log that the connection is closed.
     console.log(
-      `\n================ Database connection closed! ================\n Status: ${connection.readyState}`
+      `\n===========================================================`
+    );
+    console.log(
+      `DATABASE CONNECTION CLOSED\n STATUS: ${connection.readyState}`
+    );
+    console.log(
+      `===========================================================\n`
     );
   }
 };

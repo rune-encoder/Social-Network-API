@@ -137,5 +137,4 @@ const getRandomThoughts = () => {
   return randomThought;
 };
 
-console.log(getRandomThoughts());
 module.exports = { getRandomUsername, getRandomEmail, getRandomFriends, getRandomThoughts };
