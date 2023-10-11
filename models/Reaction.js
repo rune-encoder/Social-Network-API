@@ -1,9 +1,9 @@
-const { Schema, model } = require("mongoose");
+const { Schema, Types, model } = require("mongoose");
 
 const reactionSchema = new Schema(
   {
     reactionId: {
-      type: Schema.Types.ObjectId,
+      type: Types.ObjectId,
       default: () => new Types.ObjectId(),
     },
     reactionBody: {
@@ -18,9 +18,10 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-
-      // Todo Use a getter method to format the timestamp on query
-      get: (value) => new Date(value).toLocaleDateString(),
+      get: (value) =>
+        new Date(value).toLocaleDateString() +
+        " " +
+        new Date(value).toLocaleTimeString(),
     },
   },
   {

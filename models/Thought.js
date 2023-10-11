@@ -13,9 +13,10 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date, // Date data type
       default: Date.now, // Current timestamp
-
-      // Todo Use a getter method to format the timestamp on query
-      get: (value) => new Date(value).toLocaleDateString(),
+      get: (value) =>
+        new Date(value).toLocaleDateString() +
+        " " +
+        new Date(value).toLocaleTimeString(),
     },
     username: {
       type: String,
@@ -26,10 +27,12 @@ const thoughtSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
+      getters: true,
+      transform: (doc, ret) => {
+        delete ret.id;
+        delete ret.__v;
+      },
     },
-
-    // Todo =========================
-    // toObject: { virtuals: true },
   }
 );
 
