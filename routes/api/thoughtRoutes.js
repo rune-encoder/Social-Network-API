@@ -9,21 +9,24 @@ const {
   updateThought,
   removeThought,
   addReaction,
-  removeReaction,
-} = require("../../controllers/thought-controller");
+  removeReaction
+} = require("../../controllers/thoughtController");
 
 // GET and POST endpoint at /api/thoughts
 router.route("/").get(getAllThoughts).post(createThought);
 
 // GET, UPDATE, DELETE endpoint at /api/thoughts/:id
 router
-  .route("/:id")
+  .route("/:thoughtId")
   .get(getSingleThought)
   .put(updateThought)
   .delete(removeThought);
 
-// POST and DELETE endpoint at /api/thoughts/:thoughtId/reactions
-router.route("/:thoughtId/reactions").post(addReaction).delete(removeReaction);
+// POST endpoint at /api/thoughts/:thoughtId/reactions
+router.route("/:thoughtId/reactions").post(addReaction);
+
+// DELETE endpoint at /api/thoughts/:thoughtId/reactions/:reactionId
+router.route("/:thoughtId/reactions/:reactionId").delete(removeReaction);
 
 // Export the router instance.
 module.exports = router;
