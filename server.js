@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Middleware: Use the routing logic defined in the "routes" module to handle incoming requests.
-// app.use(routes);
+app.use(routes);
 
 // Database Connection Event Listener: Listen for the "open" event of the database connection.
 db.once("open", () => {

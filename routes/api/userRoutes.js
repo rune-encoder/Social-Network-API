@@ -10,13 +10,13 @@ const {
   removeUser,
   addFriend,
   removeFriend,
-} = require("../../controllers/user-controller");
+} = require("../../controllers/userController.js");
 
 // GET and POST endpoint at /api/users
 router.route("/").get(getAllUsers).post(createNewUser);
 
-// GET, UPDATE, DELETE endpoint at /api/users/:id
-router.route("/:id").get(getSingleUser).put(updateUser).delete(removeUser);
+// GET, UPDATE, DELETE endpoint at /api/users/:userId
+router.route("/:userId").get(getSingleUser).put(updateUser).delete(removeUser);
 
 // POST and DELETE endpoint at /api/users/:userId/friends/:friendId
 router.route("/:userId/friends/:friendId").post(addFriend).delete(removeFriend);

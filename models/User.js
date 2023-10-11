@@ -33,10 +33,11 @@ const userSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
+      transform: (doc, ret) => {
+        delete ret.id;
+        delete ret.__v;
+      },
     },
-
-    // Todo =========================
-    // toObject: { virtuals: true },
   }
 );
 
