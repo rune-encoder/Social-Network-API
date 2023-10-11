@@ -106,38 +106,32 @@ const reactionSetTwo = [
   "🤖",
 ];
 
-// Get a random username
+// HELPER FUNCTION TO GET A RANDOM ITEM FROM AN ARRAY
+const getRandomItem = (arr) => {
+  return arr[Math.floor(Math.random() * arr.length)];
+};
+
+// GENERATE RANDOM USERNAME
 const getRandomUsername = () => {
-  // Randomly select a word from each wordSet
-  const randomWord = (wordSet) => {
-    const randomIndex = Math.floor(Math.random() * wordSet.length);
-    return wordSet[randomIndex];
-  };
-
-  // Generate a username using the random words and a random numbers.
-  const randomSetOne = randomWord(wordSetOne);
-  const randomSetTwo = randomWord(wordSetTwo);
-
-  // Generate a random number between 10 and 99 after the username.
+  const randomSetOne = getRandomItem(wordSetOne);
+  const randomSetTwo = getRandomItem(wordSetTwo);
+  
+  // Generate a random number between 10 and 99 after the generated username
   const username =
     randomSetTwo + randomSetOne + Math.floor(Math.random() * 90 + 10);
 
   return username;
 };
 
-// Get a random email address
+// GENERATE RANDOM EMAIL FOR A USER
 const getRandomEmail = (username) => {
-  // Randomly select an email domain from emailSet.
-  const randomEmailDomain =
-    emailSet[Math.floor(Math.random() * emailSet.length)];
-
-  // Generate the email using the username and email domain.
+  const randomEmailDomain = getRandomItem(emailSet);
   const email = username.toLowerCase() + randomEmailDomain;
 
   return email;
 };
 
-// Get a random set of friends
+// GENERATE RANDOM FRIENDS FOR A USER
 const getRandomFriends = (users, currentUser, friendCount) => {
   const randomFriends = [];
   const shuffledUsers = [...users]; // Clone the users array
@@ -159,23 +153,17 @@ const getRandomFriends = (users, currentUser, friendCount) => {
   return randomFriends;
 };
 
-// Get a random set of thoughts
+// GENERATE RANDOM THOUGHTS
 const getRandomThoughts = () => {
   const randomThought =
-    thoughtSetOne[Math.floor(Math.random() * thoughtSetOne.length)] +
-    " " +
-    thoughtSetTwo[Math.floor(Math.random() * thoughtSetTwo.length)];
-
+    getRandomItem(thoughtSetOne) + " " + getRandomItem(thoughtSetTwo);
   return randomThought;
 };
 
-// Get a random set of reactions
+// GENERATE RANDOM REACTIONS FOR A THOUGHT
 const getRandomReaction = () => {
   const randomReaction =
-    reactionSetOne[Math.floor(Math.random() * reactionSetOne.length)] +
-    " " +
-    reactionSetTwo[Math.floor(Math.random() * reactionSetTwo.length)];
-
+    getRandomItem(reactionSetOne) + " " + getRandomItem(reactionSetTwo);
   return randomReaction;
 };
 
