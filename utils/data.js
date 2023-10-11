@@ -1,5 +1,3 @@
-const { get } = require("../models/Reaction");
-
 const wordSetOne = [
   "Bacon",
   "Biscuit",
@@ -76,6 +74,39 @@ const thoughtSetTwo = [
   "I'm not the smartest fellow in the world, but I can sure pick smart colleagues.",
 ];
 
+const reactionSetOne = [
+  "Tell me more...",
+  "Wow!",
+  "Mind blown!",
+  "Cool!",
+  "Interesting...",
+  "I agree!",
+  "I disagree!",
+  "I don't know...",
+  "Fascinating!",
+  "Cool story, bro!",
+  "Awesome!",
+  "I'm speechless!",
+  "I'm at a loss for words!",
+];
+
+const reactionSetTwo = [
+  "😆",
+  "😢",
+  "😡",
+  "🤯",
+  "😱",
+  "🤔",
+  "😬",
+  "😍",
+  "😴",
+  "😈",
+  "👽",
+  "👾",
+  "🤖",
+];
+
+// Get a random username
 const getRandomUsername = () => {
   // Randomly select a word from each wordSet
   const randomWord = (wordSet) => {
@@ -94,6 +125,7 @@ const getRandomUsername = () => {
   return username;
 };
 
+// Get a random email address
 const getRandomEmail = (username) => {
   // Randomly select an email domain from emailSet.
   const randomEmailDomain =
@@ -105,6 +137,7 @@ const getRandomEmail = (username) => {
   return email;
 };
 
+// Get a random set of friends
 const getRandomFriends = (users, currentUser, friendCount) => {
   const randomFriends = [];
   const shuffledUsers = [...users]; // Clone the users array
@@ -126,9 +159,8 @@ const getRandomFriends = (users, currentUser, friendCount) => {
   return randomFriends;
 };
 
+// Get a random set of thoughts
 const getRandomThoughts = () => {
-  // Get a random set of thoughts
-
   const randomThought =
     thoughtSetOne[Math.floor(Math.random() * thoughtSetOne.length)] +
     " " +
@@ -137,4 +169,20 @@ const getRandomThoughts = () => {
   return randomThought;
 };
 
-module.exports = { getRandomUsername, getRandomEmail, getRandomFriends, getRandomThoughts };
+// Get a random set of reactions
+const getRandomReaction = () => {
+  const randomReaction =
+    reactionSetOne[Math.floor(Math.random() * reactionSetOne.length)] +
+    " " +
+    reactionSetTwo[Math.floor(Math.random() * reactionSetTwo.length)];
+
+  return randomReaction;
+};
+
+module.exports = {
+  getRandomUsername,
+  getRandomEmail,
+  getRandomFriends,
+  getRandomThoughts,
+  getRandomReaction,
+};

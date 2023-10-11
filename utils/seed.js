@@ -1,11 +1,12 @@
 const connection = require("../config/connection.js");
 
-const { User, Thought } = require("../models");
+const { User, Thought, reactionSchema } = require("../models");
 const {
   getRandomUsername,
   getRandomEmail,
   getRandomFriends,
   getRandomThoughts,
+  getRandomReaction,
 } = require("./data.js");
 
 const seedDatabase = async () => {
@@ -21,10 +22,10 @@ const seedDatabase = async () => {
     );
     console.log(`DATABASE CONNECTION OPEN\n STATUS: ${connection.readyState}`);
     console.log(
-      `===========================================================\n`
+      `===========================================================`
     );
 
-    // Delete existing collections if they exist.
+    // DELETE EXISTING COLLECTIONS FROM THE DATABASE (IF ANY EXIST).
     let userCheck = await connection.db
       .listCollections({ name: "users" })
       .toArray();
@@ -35,7 +36,7 @@ const seedDatabase = async () => {
       );
       console.log(`DROPPED COLLECTION: "USERS"`);
       console.log(
-        `===========================================================\n`
+        `===========================================================`
       );
     }
 
@@ -49,11 +50,11 @@ const seedDatabase = async () => {
       );
       console.log(`DROP COLLECTION: "THOUGHTS"`);
       console.log(
-        `===========================================================\n`
+        `===========================================================`
       );
     }
 
-    // Seed the User collection with random users and emails.
+    // SEED THE USER COLLECTION WITH RANDOM USERS AND EMAILS.
     const users = [];
 
     for (let i = 0; i < 30; i++) {
@@ -70,14 +71,16 @@ const seedDatabase = async () => {
 
     // Insert the users into the User collection.
     await User.collection.insertMany(users);
+
     console.log(
       `\n===========================================================`
     );
     console.log(`CREATED "USER" COLLECTION: SEEDED "${users.length}" USERS!`);
     console.log(
-      `===========================================================\n`
+      `===========================================================`
     );
-    // Populate the friends array for each user.
+
+    // SEED THE USER COLLECTION WITH RANDOM FRIENDS FROM EXISTING USERS.
     for (const user of users) {
       // Generate a random number of friends between 1 and 3
       const friendCount = Math.floor(Math.random() * 3 + 1);
@@ -100,14 +103,14 @@ const seedDatabase = async () => {
     );
     console.log(`UPDATED "USER" COLLECTION: ADDED FRIENDS TO EACH USER`);
     console.log(
-      `===========================================================\n`
+      `===========================================================`
     );
 
     // Serialize the array of users data.
     const findUsers = await User.find({});
     const seededUsers = findUsers.map((user) => user.toObject());
 
-    // Seed the Thought collection with random thoughts.
+    // SEED THE THOUGHT COLLECTION WITH RANDOM THOUGHTS.
     const thoughts = [];
 
     for (let i = 0; i < 40; i++) {
@@ -117,9 +120,40 @@ const seedDatabase = async () => {
       const thought = {
         thoughtText,
         username: seededUsers[randomUserIndex].username, // Include the username for reference
+        reactions: [],
       };
 
       thoughts.push(thought);
+    }
+
+    // SEED THE THOUGHT COLLECTION WITH RANDOM REACTIONS.
+    const reactions = [];
+
+    // Generate 50 random reactions
+    for (let i = 0; i < 50; i++) {
+      const reactionBody = getRandomReaction();
+      const randomUserIndex = Math.floor(Math.random() * seededUsers.length);
+
+      const reaction = {
+        reactionBody,
+        username: seededUsers[randomUserIndex].username, // Include the username for reference
+      };
+
+      reactions.push(reaction);
+    }
+
+    // Add the reactions to the thoughts
+    for (let i = 0; i < 50; i++) {
+      // Get a random reaction from the reactions array
+      const randomReactionIndex = Math.floor(Math.random() * reactions.length);
+
+      //Get a random thought from the thoughts array
+      const randomThoughtIndex = Math.floor(Math.random() * thoughts.length);
+
+      const selectedReaction = reactions.splice(randomReactionIndex, 1)[0];
+
+      // Add the random reaction to the thought's reactions array
+      thoughts[randomThoughtIndex].reactions.push(selectedReaction);
     }
 
     // Insert the thoughts into the Thought collection.
@@ -129,19 +163,17 @@ const seedDatabase = async () => {
     const findThoughts = await Thought.find({});
     const seededThoughts = findThoughts.map((thought) => thought.toObject());
 
-    // TODO =====================================================
-    // console.log(seededThoughts);
-
     console.log(
       `\n===========================================================`
     );
     console.log(
-      `CREATED "THOUGHT" COLLECTION: SEEDED "${thoughts.length}" "THOUGHTS"!`
+      `CREATED "THOUGHT" COLLECTION: SEEDED "${thoughts.length}" "THOUGHTS" AND "50" REACTIONS!`
     );
     console.log(
-      `===========================================================\n`
+      `===========================================================`
     );
 
+    // SEED THE USER COLLECTION WITH RANDOM THOUGHT "_id"'S FROM EXISTING THOUGHTS.
     for (const thought of seededThoughts) {
       const username = thought.username;
 
@@ -160,17 +192,16 @@ const seedDatabase = async () => {
       }
     }
 
-    // TODO =====================================================
-    const updatedUsers2 = await User.find({});
-    const seededUsers2 = updatedUsers2.map((user) => user.toObject());
-    // console.log(seededUsers2);
+    // Serialize the array of users data.
+    const updatedUsersSecond = await User.find({});
+    const seededUsersSecond = updatedUsersSecond.map((user) => user.toObject());
 
     console.log(
       `\n===========================================================`
     );
     console.log(`UPDATED "USER" COLLECTION: ADDED THOUGHT ID'S TO EACH USER!`);
     console.log(
-      `===========================================================\n`
+      `===========================================================`
     );
 
     console.log(
@@ -178,18 +209,35 @@ const seedDatabase = async () => {
     );
     console.log("SEEDING COMPLETE!");
     console.log(
-      `===========================================================\n`
+      `===========================================================`
     );
 
-    // TODO =====================================================
-    console.log(seededThoughts);
-    console.log(seededUsers2);
-    
+    // Log samples of the seeded data to the console.
+    console.log(
+      `\n===========================================================`
+    );
+    console.log(
+      `SAMPLE THOUGHTS:`,
+      seededThoughts[0],
+      seededThoughts[1],
+      seededThoughts[2],
+      `\n`
+    );
+    console.log(
+      `SAMPLE USERS:`,
+      seededUsersSecond[0],
+      seededUsersSecond[1],
+      seededUsersSecond[2]
+    );
+    console.log(
+      `===========================================================\n`
+    );
   } catch (error) {
     console.error("Error connecting to the database:", error);
   } finally {
     // Close the database connection
     connection.close();
+
     // Log that the connection is closed.
     console.log(
       `\n===========================================================`
@@ -198,7 +246,7 @@ const seedDatabase = async () => {
       `DATABASE CONNECTION CLOSED\n STATUS: ${connection.readyState}`
     );
     console.log(
-      `===========================================================\n`
+      `===========================================================`
     );
   }
 };
