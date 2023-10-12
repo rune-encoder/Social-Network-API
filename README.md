@@ -130,7 +130,7 @@ _Created By: Christian Palacios_
 </p>
 
 <br> <p align="center">
-[![Rune-Encoder-Logo](./public/assets/ᚱuᚢeEᚢcᛟdeᚱ.svg)](https://github.com/rune-encoder?tab=repositories)
+[![Rune-Encoder-Logo](./assets/ᚱuᚢeEᚢcᛟdeᚱ.svg)](https://github.com/rune-encoder?tab=repositories)
 
 </p>
 
