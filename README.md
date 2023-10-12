@@ -136,47 +136,62 @@ _Created By: Christian Palacios_
 
 ## Application Screenshots
 
-> **Populate Database: Run `npm run seed`**
+> **Populate Database: Run `npm run seed`**  
+
 ![NPM-Run-Seed](./assets/npm-run-seed.png)
 
-> **GET All Users**  
+> **GET All Users**
+
 ![GET All Users](./assets/get-users.png)
 
-> **GET User by ID**  
+> **GET User by ID**
+
 ![GET User by ID](./assets/get-user-by-id.png)
 
-> **Create User**  
+> **Create User**
+
 ![Create User](./assets/create-user.png)
 
-> **Update User**  
+> **Update User**
+
 ![Update User](./assets/update-user.png)
 
-> **Delete User**  
+> **Delete User**
+
 ![Delete User](./assets/delete-user.png)
 
-> **Create Friend for User**  
+> **Create Friend for User**
+
 ![Create Friend for User](./assets/create-friend.png)
 
-> **Delete Friend for User**  
+> **Delete Friend for User**
+
 ![Delete Friend for User](./assets/delete-friend.png)
 
-> **GET All Thoughts**  
+> **GET All Thoughts**
+
 ![Get All Thoughts](./assets/get-thoughts.png)
 
-> **Get Thought by ID**  
+> **Get Thought by ID**
+
 ![Get Thought](./assets/get-thought-by-id.png)
 
-> **Create Thought**  
+> **Create Thought**
+
 ![Create Thought](./assets/create-thought.png)
 
-> **Update Thought**  
+> **Update Thought**
+
 ![Update Thought](./assets/update-thought.png)
 
-> **Delete Thought**  
+> **Delete Thought**
+
 ![Delete Thought](./assets/delete-thought.png)
 
-> **Create Reaction**  
+> **Create Reaction**
+
 ![Create Reaction](./assets/create-reaction.png)
 
-> **Delete Reaction**  
+> **Delete Reaction**
+
 ![Delete Reaction](./assets/delete-reaction.png)
