@@ -136,47 +136,47 @@ _Created By: Christian Palacios_
 
 ## Application Screenshots
 
-> **Populate Database: Run `npm run seed`**  
-![NPM-Run-Seed](/assets/npm-run-seed.png)
+> **Populate Database: Run `npm run seed`**
+![NPM-Run-Seed](./assets/npm-run-seed.png)
 
 > **GET All Users**  
-> ![GET All Users](/assets/get-users.png)
+![GET All Users](./assets/get-users.png)
 
 > **GET User by ID**  
-> ![GET User by ID](./assets/get-user-by-id.png)
+![GET User by ID](./assets/get-user-by-id.png)
 
 > **Create User**  
-> ![NPM-Run-Seed](./assets/create-user.png)
+![Create User](./assets/create-user.png)
 
 > **Update User**  
-> ![NPM-Run-Seed](./assets/update-user.png)
+![Update User](./assets/update-user.png)
 
 > **Delete User**  
-> ![NPM-Run-Seed](./assets/delete-user.png)
+![Delete User](./assets/delete-user.png)
 
 > **Create Friend for User**  
-> ![NPM-Run-Seed](./assets/create-friend.png)
+![Create Friend for User](./assets/create-friend.png)
 
 > **Delete Friend for User**  
-> ![NPM-Run-Seed](./assets/delete-friend.png)
+![Delete Friend for User](./assets/delete-friend.png)
 
 > **GET All Thoughts**  
-> ![NPM-Run-Seed](./assets/get-thoughts.png)
+![Get All Thoughts](./assets/get-thoughts.png)
 
 > **Get Thought by ID**  
-> ![NPM-Run-Seed](./assets/get-thought-by-id.png)
+![Get Thought](./assets/get-thought-by-id.png)
 
 > **Create Thought**  
-> ![NPM-Run-Seed](./assets/create-thought.png)
+![Create Thought](./assets/create-thought.png)
 
 > **Update Thought**  
-> ![NPM-Run-Seed](./assets/update-thought.png)
+![Update Thought](./assets/update-thought.png)
 
 > **Delete Thought**  
-> ![NPM-Run-Seed](./assets/delete-thought.png)
+![Delete Thought](./assets/delete-thought.png)
 
 > **Create Reaction**  
-> ![NPM-Run-Seed](./assets/create-reaction.png)
+![Create Reaction](./assets/create-reaction.png)
 
 > **Delete Reaction**  
-> ![NPM-Run-Seed](./assets/delete-reaction.png)
+![Delete Reaction](./assets/delete-reaction.png)
