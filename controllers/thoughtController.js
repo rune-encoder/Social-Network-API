@@ -153,7 +153,7 @@ module.exports = {
       // UPDATE: the thought with the matching ID with removing the reaction
       const reactionData = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
-        { $pull: { reactions: { _id: req.params.reactionId } } },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       );
 

@@ -33,6 +33,7 @@ const thoughtSchema = new Schema(
         delete ret.__v;
       },
     },
+    id: false,
   }
 );
 

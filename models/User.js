@@ -38,6 +38,7 @@ const userSchema = new Schema(
         delete ret.__v;
       },
     },
+    id: false,
   }
 );
 
