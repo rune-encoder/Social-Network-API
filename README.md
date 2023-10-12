@@ -10,9 +10,9 @@
 
 ## Description
 
-**Social Network API Walkthrough Video: [Social-Network-API Video Link]()**
+**Social Network API Walkthrough Video: [Social-Network-API Video Link](https://youtu.be/cfSfe3_7WBc)**
 
-This _Back-End_ API was created for a _Social Network Web Aplication_ where users can share their thoughts, react to friends' thoughts, and create a friend list and more. It uses Express.js for routing, a MongoDB database, and the Mongoose ODM. The goal is to handle large amounts of unstructured data efficiently, making it a awesome choice for a social network platforms.
+This _Back-End_ API was created for a _Social Network Web Application_ where users can share their thoughts, react to friends' thoughts, and create a friend list, and more. It uses Express.js for routing, a MongoDB database, and the Mongoose ODM. The goal is to handle large amounts of unstructured data efficiently, making it an awesome choice for social network platforms.
 
 ## Table of Contents
 
@@ -21,7 +21,6 @@ This _Back-End_ API was created for a _Social Network Web Aplication_ where user
 - [API Routes](#api-routes)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
-- [Credits](#credits)
 - [License](#license)
 - [Credits and Questions](#credits-and-questions)
 - [Application Screenshots](#application-screenshots)
@@ -49,7 +48,7 @@ After you have installed MongoDB and Insomnia or Thunder Client, you can set up 
 
 This _Back-End_ Social Network Web API provides the following features:
 
-1. Users can view, post, update or delete their thoughts
+1. Users can view, post, update, or delete their thoughts
 2. Users can react to friends' thoughts
 3. Users can create a friends list
 
@@ -137,5 +136,47 @@ _Created By: Christian Palacios_
 
 ## Application Screenshots
 
-> Populate Database: Run `npm run seed`  
-> ![NPM-Run-Seed](./public/assets/screenshots/npm-run-seed.png)
+> **Populate Database: Run `npm run seed`**  
+> ![NPM-Run-Seed](./public/assets/screenshots/npm-run-seed.png)  
+
+> **GET All Users**  
+> ![GET All Users](./public/assets/screenshots/get-users.png)
+
+> **GET User by ID**  
+> ![GET User by ID](./public/assets/screenshots/get-user-by-id.png)
+
+> **Create User**  
+> ![NPM-Run-Seed](./public/assets/screenshots/create-user.png)
+
+> **Update User**  
+> ![NPM-Run-Seed](./public/assets/screenshots/update-user.png)
+
+> **Delete User**  
+> ![NPM-Run-Seed](./public/assets/screenshots/delete-user.png)
+
+> **Create Friend for User**  
+> ![NPM-Run-Seed](./public/assets/screenshots/create-friend.png)
+
+> **Delete Friend for User**  
+> ![NPM-Run-Seed](./public/assets/screenshots/delete-friend.png)
+
+> **GET All Thoughts**  
+> ![NPM-Run-Seed](./public/assets/screenshots/get-thoughts.png)
+
+> **Get Thought by ID**  
+> ![NPM-Run-Seed](./public/assets/screenshots/get-thought-by-id.png)
+
+> **Create Thought**  
+> ![NPM-Run-Seed](./public/assets/screenshots/create-thought.png)
+
+> **Update Thought**  
+> ![NPM-Run-Seed](./public/assets/screenshots/update-thought.png)
+
+> **Delete Thought**  
+> ![NPM-Run-Seed](./public/assets/screenshots/delete-thought.png)
+
+> **Create Reaction**  
+> ![NPM-Run-Seed](./public/assets/screenshots/create-reaction.png)
+
+> **Delete Reaction**  
+> ![NPM-Run-Seed](./public/assets/screenshots/delete-reaction.png)

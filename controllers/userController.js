@@ -134,7 +134,6 @@ module.exports = {
       // Confirm that the friend was removed successfully
       res.status(200).json({
         message: `Friend removed successfully!`,
-        updatedUser: userData,
       });
     } catch (err) {
       res.status(500).json(err);
