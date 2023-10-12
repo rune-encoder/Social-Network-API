@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/rune-encoder/Social-Network-API#readme",
   "dependencies": {
+    "chalk": "^4.1.0",
     "express": "^4.18.2",
     "mongoose": "^7.6.0"
   }

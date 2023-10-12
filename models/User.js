@@ -12,10 +12,10 @@ const userSchema = new Schema(
       type: String,
       unique: true, // unique email
       required: true, // required field
-
-      // Todo Validation for email ====
-      //   match: [],
-
+      match: [
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+        "Please enter a valid email address!",
+      ],
     },
     thoughts: [
       {

@@ -1,7 +1,8 @@
 const connection = require("../config/connection.js");
 
-const { User, Thought } = require("../models");
+const chalk = require('chalk');
 
+const { User, Thought } = require("../models");
 const {
   getRandomUsername,
   getRandomEmail,
@@ -22,9 +23,9 @@ const seedDatabase = async () => {
       connection.once("open", resolve);
     });
 
-    console.log(`\n===========================================================`);
-    console.log(`DATABASE CONNECTION OPEN\n STATUS: ${connection.readyState}`);
-    console.log(`===========================================================`);
+    console.log(chalk.yellow.bold`\n===========================================================`);
+    console.log(chalk.green.bold`DATABASE CONNECTION OPEN\n STATUS: ${connection.readyState}`);
+    console.log(chalk.yellow.bold`===========================================================`);
 
     // DROP EXISTING COLLECTIONS FROM THE DATABASE (IF ANY EXIST).
     await dropCollectionIfExists("users");
@@ -48,9 +49,9 @@ const seedDatabase = async () => {
     // CREATE THE USER COLLECTION WITH RANDOM USERS AND EMAILS.
     await User.collection.insertMany(users);
 
-    console.log(`\n===========================================================`);
-    console.log(`CREATED "USER" COLLECTION: SEEDED "${users.length}" USERS!`);
-    console.log(`===========================================================`);
+    console.log(chalk.bold.green`\n===========================================================`);
+    console.log(chalk.bold.green`CREATED ${chalk.bold.magenta`USER`} COLLECTION: SEEDED "${chalk.bold.magenta(users.length)}" USERS!`);
+    console.log(chalk.bold.green`===========================================================`);
 
     // SEED THE USER COLLECTION WITH RANDOM FRIENDS FROM EXISTING USERS.
     for (const user of users) {
@@ -71,9 +72,9 @@ const seedDatabase = async () => {
       );
     }
 
-    console.log(`\n===========================================================`);
-    console.log(`UPDATED "USER" COLLECTION: ADDED FRIENDS TO EACH USER`);
-    console.log(`===========================================================`);
+    console.log(chalk.bold.green`\n===========================================================`);
+    console.log(chalk.bold.green`UPDATED ${chalk.bold.magenta`"USER"`} COLLECTION: ADDED FRIENDS TO EACH USER`);
+    console.log(chalk.bold.green`===========================================================`);
 
     // Serialize the array of users data.
     const seededUsers = await serializeData(User);
@@ -128,9 +129,9 @@ const seedDatabase = async () => {
     // Serialize the array of thoughts data.
     const seededThoughts = await serializeData(Thought);
 
-    console.log(`\n===========================================================`);
-    console.log(`CREATED "THOUGHT" COLLECTION: SEEDED "${thoughts.length}" "THOUGHTS" AND "50" REACTIONS!`);
-    console.log(`===========================================================`);
+    console.log(chalk.bold.green`\n===========================================================`);
+    console.log(chalk.bold.green`CREATED ${chalk.bold.magenta`"THOUGHT"`} COLLECTION: SEEDED "${chalk.bold.magenta(thoughts.length)}" "THOUGHTS" AND ${chalk.bold.magenta`"50"`} REACTIONS!`);
+    console.log(chalk.bold.green`===========================================================`);
 
     // SEED THE USER COLLECTION WITH RANDOM THOUGHT "_id"'S FROM EXISTING THOUGHTS.
     for (const thought of seededThoughts) {
@@ -154,33 +155,29 @@ const seedDatabase = async () => {
     // Serialize the array of users data.
     const seededUsersSecond = await serializeData(User);
 
-    console.log(`\n===========================================================`);
-    console.log(`UPDATED "USER" COLLECTION: ADDED THOUGHT ID'S TO EACH USER!`);
-    console.log(`===========================================================`);
+    console.log(chalk.bold.green`\n===========================================================`);
+    console.log(chalk.bold.green`UPDATED ${chalk.bold.magenta`"USER"`} COLLECTION: ADDED THOUGHT ID'S TO EACH USER!`);
+    console.log(chalk.bold.green`===========================================================`);
 
-    console.log(`\n===========================================================`);
-    console.log("SEEDING COMPLETE!");
-    console.log(`===========================================================`);
+    console.log(chalk.bold.green`\n===========================================================`);
+    console.log(chalk.bold.green`SEEDING COMPLETE!`);
+    console.log(chalk.bold.green`===========================================================`);
 
     // Log samples of the seeded data to the console.
     console.log(
-      `\n===========================================================`
+      chalk.bold.yellow`\n===========================================================`
     );
     console.log(
-      `SAMPLE THOUGHTS:`,
+      chalk.black.bgYellow`SAMPLE THOUGHT:`,
       seededThoughts[0],
-      seededThoughts[1],
-      seededThoughts[2],
       `\n`
     );
     console.log(
-      `SAMPLE USERS:`,
+      chalk.black.bgYellow`SAMPLE USER:`,
       seededUsersSecond[0],
-      seededUsersSecond[1],
-      seededUsersSecond[2]
     );
     console.log(
-      `===========================================================\n`
+      chalk.bold.yellow`===========================================================\n`
     );
   } catch (error) {
     console.error("Error connecting to the database:", error);
@@ -189,9 +186,9 @@ const seedDatabase = async () => {
     connection.close();
 
     // Log that the connection is closed.
-    console.log(`\n===========================================================`);
-    console.log(`DATABASE CONNECTION CLOSED\n STATUS: ${connection.readyState}`);
-    console.log(`===========================================================`);
+    console.log(chalk.yellow.bold`===========================================================`);
+    console.log(chalk.red.bold`DATABASE CONNECTION CLOSED\n STATUS: ${connection.readyState}`);
+    console.log(chalk.yellow.bold`===========================================================`);
   }
 };
 
