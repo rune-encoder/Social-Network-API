@@ -137,10 +137,10 @@ _Created By: Christian Palacios_
 ## Application Screenshots
 
 > **Populate Database: Run `npm run seed`**  
-![NPM-Run-Seed](./assets/npm-run-seed.png)
+![NPM-Run-Seed](/assets/npm-run-seed.png)
 
 > **GET All Users**  
-> ![GET All Users](./assets/get-users.png)
+> ![GET All Users](/assets/get-users.png)
 
 > **GET User by ID**  
 > ![GET User by ID](./assets/get-user-by-id.png)
