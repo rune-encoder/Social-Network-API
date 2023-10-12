@@ -1,5 +1,7 @@
 const connection = require("../config/connection.js");
 
+const chalk = require("chalk");
+
 // HELPER FUNCTION TO DROP A COLLECTION FROM THE DATABASE (IF IT EXISTS)
 const dropCollectionIfExists = async (collectionName) => {
   try {
@@ -14,11 +16,15 @@ const dropCollectionIfExists = async (collectionName) => {
 
       // Log the dropped collection to the console.
       console.log(
-        `\n===========================================================`
+        chalk.bold
+          .red`\n===========================================================`
       );
-      console.log(`DROPPED COLLECTION: "${collectionName.toUpperCase()}"`);
       console.log(
-        `===========================================================`
+        chalk.bold.red`DROPPED COLLECTION: "${collectionName.toUpperCase()}"`
+      );
+      console.log(
+        chalk.bold
+          .red`===========================================================`
       );
     }
   } catch (error) {
