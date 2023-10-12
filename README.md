@@ -37,12 +37,15 @@ To run this application, you will need to have **MongoDB** installed on your mac
 
 After you have installed MongoDB and Insomnia or Thunder Client, you can set up the application using the following steps:
 
-1. Clone this repository to your local machine.
-2. Open a terminal in the project's root directory.
-3. Run `npm install` to install the required dependencies.
-4. Seed the database by running `npm run seed`.
-
+1. Clone this repository to your local machine.  
+2. Open a terminal in the project's root directory.  
+3. Run `npm install` to install the required dependencies.  
+4. Seed the database by running `npm run seed`.  
 5. Start the server by running `npm start`.
+
+> **Example: Populate Database: Run `npm run seed`**  
+
+![NPM-Run-Seed](./assets/npm-run-seed.png)
 
 ## Usage
 
@@ -135,10 +138,6 @@ _Created By: Christian Palacios_
 </p>
 
 ## Application Screenshots
-
-> **Populate Database: Run `npm run seed`**  
-
-![NPM-Run-Seed](./assets/npm-run-seed.png)
 
 > **GET All Users**
 
